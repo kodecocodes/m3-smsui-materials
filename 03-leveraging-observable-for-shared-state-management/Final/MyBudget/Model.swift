@@ -46,10 +46,9 @@ class FinancialData {
   }
 }
 
-// Define a simple model for Expense and Income
 struct FinancialEntry: Identifiable {
-  var id: UUID
-  var amount: Double
-  var category: String
-  var isExpense: Bool
+  let id: UUID
+  let amount: Double
+  let category: String
+  let isExpense: Bool
 }

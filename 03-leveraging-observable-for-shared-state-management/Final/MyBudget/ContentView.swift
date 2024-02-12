@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco Inc.
+/// Copyright (c) 2024 Kodeco Inc.
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,6 @@
 
 import SwiftUI
 
-// Main View of the App
 struct ContentView: View {
   @Bindable var financialData: FinancialData
   @State private var showingAddView = false
@@ -73,8 +72,7 @@ struct ContentView: View {
   }
 }
 
-// View for displaying a single financial entry
-struct FinancialEntryRow: View {
+private struct FinancialEntryRow: View {
   var entry: FinancialEntry
 
   var body: some View {
@@ -87,8 +85,7 @@ struct FinancialEntryRow: View {
   }
 }
 
-// Additional View for adding a new financial entry
-struct AddFinancialEntryView: View {
+private struct AddFinancialEntryView: View {
   @Binding var financialEntries: [FinancialEntry]
   @Binding var showingAddView: Bool
   @State private var amount: Double = 0
@@ -98,7 +95,8 @@ struct AddFinancialEntryView: View {
   var body: some View {
     NavigationStack {
       Form {
-        TextField("Amount", value: $amount, format: .number)
+        TextField("Amount", value: $amount, format: .currency(code: "USD"))
+          .keyboardType(.decimalPad)
         TextField("Category", text: $category)
         Toggle(isOn: $isExpense) {
           Text("Is Expense")
@@ -124,7 +122,6 @@ struct AddFinancialEntryView: View {
     }
   }
 }
-
 
 // MARK: - Preview
 
